@@ -1,6 +1,5 @@
 /*Battaglia navale
  *Creato da Gaetano Torrisi il 24/12/2021
- *le istruzioni sono per dilettanti
 */
 #include <iostream>
 #include <conio.h>

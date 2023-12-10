@@ -205,8 +205,6 @@ int main()
 
             int y = verificaMat(Mat);           //verifica se esiste un vincitore
 
-            cout << "nK: " << nK << "\tnF: " << nF << endl;
-            system("pause");        //******
             system("cls");
             stampaMat(Mat, lev);
 
@@ -596,7 +594,6 @@ void sceltaBot2(int Mat[][7], bool p)
                 || Mat[i][j] == Mat[i][j + 3]) && (Mat[i][j] != 1 && Mat[i][j + 1] != 1 && Mat[i][j + 2] != 1
                 && (Mat[i][j + 3] != 1 || Mat[i][j - 1] != 1)))     //j + 3 < 7
             {
-                //cout << "SUCCHIAMI IL CAZZO\t" << i << "\t"  << j << endl;
                 
                 //creo array con possibile formazione di quartetto
                 int Vet[5];     //-1 <-to-> 3
@@ -606,11 +603,8 @@ void sceltaBot2(int Mat[][7], bool p)
                         Vet[v] = 1;
                     else
                         Vet[v] = Mat[i][j + v - 1];
-                    //cout << Vet[v] << "\t";
 
                 }
-                //cout << endl;
-
 
                 //verifico livello di priorità contando il numero di 1
                 int num2[2] = {0, 0};       //[0] = contatore di numero di 2 nel vettore; [1] = contatore numero 0
@@ -622,13 +616,10 @@ void sceltaBot2(int Mat[][7], bool p)
                         num2[1] += 1;
                 }
 
-                //cout << "Num: " << num2[0] << "\t" << num2[1] << endl;      //3  2
-
                 bool r = true;          //1 = possibilità di vittoria, 0 = caso in cui non è presente la base al di sotto della cella in cui si deve fare la mossa
 
                 for(int vv = 0; vv < 5; vv++)			//scorro il vettore co nbsequenza   53124
                 {
-                    //cout << "vv " << vv << r << endl;
                     int nV = -1;
                     if(vv == 0 && Vet[2] == 0)
                         nV = 2;
@@ -640,8 +631,6 @@ void sceltaBot2(int Mat[][7], bool p)
                         nV = 4;
                     else if(vv == 4 && Vet[0] == 0)
                         nV = 0;
-
-                    //cout << "il nV di "<< vv << "\t" << nV << endl;
 
                     if(nV != -1)
                     {
@@ -663,14 +652,11 @@ void sceltaBot2(int Mat[][7], bool p)
                         }else if(Mat[i + 1][j + nV - 1] == 0 && num2[1] == 1)   //&& Mat[i][j + nV - 1] == 0   //se non è presente la base al di sotto ed è presente una sola cella vuota non considerare la situazione
                         {
                             break;
-                            //cout << "OPS COGLIONE" << endl;
                         }
                         else if(Mat[i + 1][j + nV - 1] == 0 && nV != 4)        //caso num2[1] == 1 && no base al disotto nel mezzo del vettore
                             r = false;      //se non hai la base al disotto la priorità corrisponderà a 4
                     }
                 }
-
-                //system("pause");
             }
 
             //colonne       (da alto a basso)
@@ -962,7 +948,6 @@ void sceltaBot4(int Mat[][7], bool p)
             vetPrior.push_back(6);      //livello priorità = 6
             vetRig.push_back(-1);           //la riga deve essere rilevata al momento dell'assegnazione
             vetCol.push_back(c);
-            //riempiCol(true, c, Mat);
         }else
             sceltaBot4(Mat, false);
     }
@@ -985,7 +970,7 @@ bool assegnaBot(int Mat[][7], int lev, int& nK, int nF)
             int rig = vetRig[i];
             int col = vetCol[i];
             assegna(Mat, 2, rig, col, lev);
-        	cout << "PRIOR 1\t"<< vetRig[i]<<"\t"<<vetCol[i]<< endl;
+        	//cout << "PRIOR 1\t"<< vetRig[i]<<"\t"<<vetCol[i]<< endl;
             pulisciVet(true);
             break;
             return false;
@@ -1003,7 +988,7 @@ bool assegnaBot(int Mat[][7], int lev, int& nK, int nF)
                 if(nK <= nF || lev == 3)
                 {
                     assegna(Mat, 2, rig, col, lev);
-                    cout << "PRIOR 2\t"<< vetRig[i]<<"\t"<<vetCol[i]<< endl;
+                    //cout << "PRIOR 2\t"<< vetRig[i]<<"\t"<<vetCol[i]<< endl;
                     pulisciVet(true);
                     break;
                     return false;
@@ -1020,7 +1005,7 @@ bool assegnaBot(int Mat[][7], int lev, int& nK, int nF)
             if((notCol[col] == 0 && lev == 3) || lev != 3)
             {
                 assegna(Mat, 2, rig, col, lev);
-                cout << "PRIOR 3\t"<< vetRig[i]<<"\t"<<vetCol[i]<< endl;
+                //cout << "PRIOR 3\t"<< vetRig[i]<<"\t"<<vetCol[i]<< endl;
                 pulisciVet(true);
                 break;
                 return false;
@@ -1037,7 +1022,7 @@ bool assegnaBot(int Mat[][7], int lev, int& nK, int nF)
             {
                 nK++;
                 assegna(Mat, 2, rig, col, lev);
-                cout << "PRIOR 4\t"<< vetRig[i]<<"\t"<<vetCol[i]<< endl;
+                //cout << "PRIOR 4\t"<< vetRig[i]<<"\t"<<vetCol[i]<< endl;
                 pulisciVet(true);
                 break;
                 return false;
@@ -1051,7 +1036,7 @@ bool assegnaBot(int Mat[][7], int lev, int& nK, int nF)
             int rig = vetRig[i];
             int col = vetCol[i];
             assegna(Mat, 2, rig, col, lev);
-            cout << "PRIOR 5\t"<< vetRig[i]<<"\t"<<vetCol[i]<< endl;
+            //cout << "PRIOR 5\t"<< vetRig[i]<<"\t"<<vetCol[i]<< endl;
             pulisciVet(true);
             break;
             return false;
@@ -1062,7 +1047,7 @@ bool assegnaBot(int Mat[][7], int lev, int& nK, int nF)
         if(vetPrior[i] == 6)
         {
             riempiCol(true, vetCol[i], Mat, lev);
-            cout << "PRIOR 6\t"<< vetRig[i]<<"\t"<<vetCol[i]<< endl;
+            //cout << "PRIOR 6\t"<< vetRig[i]<<"\t"<<vetCol[i]<< endl;
             pulisciVet(true);
             break;
             return false;

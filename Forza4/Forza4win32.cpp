@@ -361,7 +361,8 @@ bool testCoordinate(int x)
     int y = verificaMat(Mat);
     if(y == 3 || y == 4)
     {
-        string str = "HA VINTO GIOCATORE " + to_string(y - 2) + "!";
+    	string s = (y == 3 ? "1" : "2");
+        string str = "HA VINTO GIOCATORE " + s + "!";
         Edit_SetText(hwndTXT1, &str[0]); 
         return false;
     }
